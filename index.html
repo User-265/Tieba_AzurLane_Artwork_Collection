@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub仓库导航 - 1.html</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f6f8fa;
+            color: #24292e;
+            line-height: 1.5;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: #24292e;
+            color: white;
+            padding: 15px 0;
+            border-bottom: 1px solid #444d56;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 22px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: #58a6ff;
+        }
+        
+        .github-info {
+            font-size: 14px;
+            color: #8b949e;
+        }
+        
+        .nav-container {
+            background-color: #f6f8fa;
+            border-bottom: 1px solid #e1e4e8;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #24292e;
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .nav-link {
+            padding: 6px 12px;
+            background-color: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #24292e;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            background-color: #f3f4f6;
+            border-color: #d0d7de;
+        }
+        
+        .nav-link.active {
+            background-color: #0969da;
+            color: white;
+            border-color: #0969da;
+        }
+        
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 15px;
+        }
+        
+        .iframe-container {
+            flex: 1;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        #content-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .page-info {
+            margin-top: 15px;
+            padding: 12px 15px;
+            background-color: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .page-info code {
+            background-color: rgba(175, 184, 193, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        footer {
+            margin-top: 20px;
+            padding: 15px 0;
+            text-align: center;
+            color: #57606a;
+            font-size: 14px;
+            border-top: 1px solid #e1e4e8;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .github-info {
+                margin-top: 8px;
+            }
+            
+            .nav-links {
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+            
+            .nav-link {
+                white-space: nowrap;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .nav-link {
+                padding: 5px 8px;
+                font-size: 13px;
+            }
+        }
+        
+        .loading-indicator {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0969da;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fab fa-github"></i>
+                    GitHub仓库导航
+                </div>
+                <div class="github-info">
+                    <i class="fas fa-folder"></i> 仓库网页导航器 | 使用iframe加载内容
+                </div>
+            </div>
+        </header>
+        
+        <div class="nav-container">
+            <div class="nav-title">
+                <i class="fas fa-file-code"></i> 仓库中的网页文件:
+            </div>
+            <nav class="nav-links" id="nav-links">
+                <!-- 导航链接将通过JavaScript动态生成 -->
+            </nav>
+        </div>
+        
+        <div class="content-area">
+            <div class="iframe-container">
+                <div class="loading-indicator" id="loading">
+                    <div class="spinner"></div>
+                    <p>加载页面中...</p>
+                </div>
+                <iframe id="content-frame" src="1.html" title="内容框架"></iframe>
+            </div>
+            
+            <div class="page-info">
+                <p><i class="fas fa-info-circle"></i> 当前页面: <span id="current-page">1.html</span> | 页面标题: <span id="page-title">1.html</span></p>
+                <p><i class="fas fa-code"></i> 提示: 修改 <code>defaultPage</code> 变量可以更改默认加载的页面</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p><i class="fas fa-cogs"></i> GitHub仓库导航页面 &copy; 2023 | 使用iframe加载多个HTML文件</p>
+        </footer>
+    </div>
+
+    <script>
+        // 配置部分
+        const defaultPage = "2026.html"; // 修改此变量以更改默认加载的页面
+        
+        // 网页文件列表（手动输入所有网页文件）
+        // 请在此处添加仓库中所有的网页文件
+        const pageFiles = [
+            "2025.html",
+            "2026.html"
+            // 可以继续添加更多文件...
+        ];
+        
+        // DOM元素
+        const navLinksContainer = document.getElementById('nav-links');
+        const contentFrame = document.getElementById('content-frame');
+        const loadingIndicator = document.getElementById('loading');
+        const currentPageSpan = document.getElementById('current-page');
+        const pageTitleSpan = document.getElementById('page-title');
+        const mainTitle = document.querySelector('title');
+        
+        // 初始化导航栏
+        function initNavigation() {
+            // 清空现有导航链接
+            navLinksContainer.innerHTML = '';
+            
+            // 为每个页面文件创建导航链接
+            pageFiles.forEach(file => {
+                const link = document.createElement('a');
+                link.href = file;
+                link.className = 'nav-link';
+                link.textContent = file;
+                link.dataset.page = file;
+                
+                // 标记默认页面为活动状态
+                if (file === defaultPage) {
+                    link.classList.add('active');
+                }
+                
+                // 添加点击事件
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    loadPage(file);
+                    updateActiveNavLink(file);
+                });
+                
+                navLinksContainer.appendChild(link);
+            });
+        }
+        
+        // 加载指定页面到iframe
+        function loadPage(pageFile) {
+            // 显示加载指示器
+            loadingIndicator.style.display = 'block';
+            contentFrame.style.opacity = '0.5';
+            
+            // 更新当前页面显示
+            currentPageSpan.textContent = pageFile;
+            
+            // 设置iframe源
+            contentFrame.src = pageFile;
+            
+            // 更新导航活动状态
+            updateActiveNavLink(pageFile);
+        }
+        
+        // 更新活动的导航链接
+        function updateActiveNavLink(activePage) {
+            // 移除所有链接的活动状态
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // 为当前活动链接添加活动状态
+            const activeLink = document.querySelector(`.nav-link[data-page="${activePage}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+        
+        // 同步iframe页面的标题到主页面
+        function syncTitle() {
+            try {
+                // 尝试获取iframe中的文档标题
+                const iframeTitle = contentFrame.contentDocument.title;
+                
+                // 如果iframe标题存在且不为空，则使用它
+                if (iframeTitle && iframeTitle.trim() !== '') {
+                    mainTitle.textContent = iframeTitle;
+                    pageTitleSpan.textContent = iframeTitle;
+                } else {
+                    // 否则使用文件名作为标题
+                    const currentFile = contentFrame.src.split('/').pop();
+                    mainTitle.textContent = `GitHub仓库导航 - ${currentFile}`;
+                    pageTitleSpan.textContent = currentFile;
+                }
+            } catch (error) {
+                // 如果由于同源策略无法获取标题，则使用文件名
+                const currentFile = contentFrame.src.split('/').pop();
+                mainTitle.textContent = `GitHub仓库导航 - ${currentFile}`;
+                pageTitleSpan.textContent = currentFile;
+            }
+            
+            // 隐藏加载指示器
+            loadingIndicator.style.display = 'none';
+            contentFrame.style.opacity = '1';
+        }
+        
+        // 初始化页面
+        function initPage() {
+            // 初始化导航栏
+            initNavigation();
+            
+            // 加载默认页面
+            loadPage(defaultPage);
+            
+            // 添加iframe加载完成事件监听器
+            contentFrame.addEventListener('load', syncTitle);
+            
+            // 初始同步标题
+            setTimeout(syncTitle, 500);
+        }
+        
+        // 当页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initPage);
+        
+        // 处理iframe加载错误
+        contentFrame.addEventListener('error', function() {
+            loadingIndicator.innerHTML = '<div style="color: #d73a49; font-size: 40px; margin-bottom: 10px;"><i class="fas fa-exclamation-triangle"></i></div><p>页面加载失败</p><p style="font-size: 14px; margin-top: 10px;">请检查文件路径是否正确</p>';
+            contentFrame.style.opacity = '1';
+            
+            // 更新标题显示
+            const currentFile = contentFrame.src.split('/').pop();
+            mainTitle.textContent = `GitHub仓库导航 - 错误加载: ${currentFile}`;
+            pageTitleSpan.textContent = `加载失败: ${currentFile}`;
+        });
+    </script>
+</body>
+</html>
