@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>吧友创作合集2025</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/theme.default.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $("#myTable").tablesorter();
+        });
+    </script>
+
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		// 获取表格中的所有行（排除表头）
+		const rows = document.querySelectorAll('table tr');
+		
+		// 假设链接在第3列（索引从0开始，所以是2）
+		const linkColumnIndex = 1; // 修改为你的列索引
+		
+		rows.forEach(function(row, rowIndex) {
+			// 跳过表头行（如果需要）
+			if (rowIndex === 0 && row.querySelectorAll('th').length > 0) {
+				return;
+			}
+			
+			const cells = row.querySelectorAll('td');
+			if (cells.length > linkColumnIndex) {
+				const linkCell = cells[linkColumnIndex];
+				const urlText = linkCell.textContent.trim();
+				
+				// 确保文本是有效的URL
+				if (urlText && isValidUrl(urlText)) {
+					const link = document.createElement('a');
+					link.href = urlText;
+					link.textContent = urlText;
+					link.target = '_blank'; // 可选：在新标签页打开
+					
+					// 清空单元格并添加链接
+					linkCell.textContent = '';
+					linkCell.appendChild(link);
+				}
+			}
+		});
+		
+		// 简单的URL验证函数
+		function isValidUrl(string) {
+			try {
+				new URL(string);
+				return true;
+			} catch (_) {
+				return false;
+			}
+		}
+	});
+	</script>
+</head>
+<body>
+	<table border="1" style="border-collapse:collapse;" id="myTable" class="tablesorter">
+		<thead>
+			<tr>
+				<td>标题</td>
+				<td>链接</td>
+				<td>作者</td>
+				<td>日期</td>
+			</tr>
+		</thead>
+		<tbody>
+      <tr>
+        <td>威廉D波特，虽然你初到，但不要打扰指挥官休息！！
+        <td>https://tieba.baidu.com/p/10357407992
+        <td>北方2333
+        <td>2026-01-01 21:39
+      </tr>
+      <tr>
+        <td>随便发点电
+        <td>https://tieba.baidu.com/p/10357603817
+        <td>贴吧用户_Ja44R1K
+        <td>2026-01-01 23:34
+      </tr>
+      <tr>
+        <td>美食形态的金狮妈妈（美食文补一下）
+        <td>https://tieba.baidu.com/p/10360326072
+        <td>大大大橙子12
+        <td>2026-01-02 22:56
+      </tr>
+      <tr>
+        <td>如果希佩尔是指挥官的同桌
+        <td>https://tieba.baidu.com/p/10367490374
+        <td>迟不正
+        <td>2026-01-05 10:38
+      </tr>
+      <tr>
+        <td>【圣迭戈一家】魅魔企业
+        <td>https://tieba.baidu.com/p/10367984641
+        <td>作者球二号机
+        <td>2026-01-05 13:49
+      </tr>
+      <tr>
+				<td>【阁下，你的汉堡来了】
+				<td>https://tieba.baidu.com/p/10371485152
+				<td>ez-8
+				<td>2026-01-06 16:43
+			</tr>
+      <tr>
+				<td>金狮妈妈今日份的晚饭（美食文）
+				<td>https://tieba.baidu.com/p/10381790468
+				<td>大大大橙子12
+				<td>2026-01-09 21:21
+			</tr>
+      <tr>
+				<td>关于碧蓝航线的同人
+				<td>https://tieba.baidu.com/p/10384853180
+				<td>生化酱油
+				<td>2026-01-10 21:42
+			</tr>
+      <tr>
+				<td>【港区日常】与指挥官私奔的企业（雾
+				<td>https://tieba.baidu.com/p/10386783198
+				<td>作者球二号机
+				<td>2026-01-11 14:40
+			</tr>
+      <tr>
+				<td>【圣迭戈一家】小企业的圣诞节
+				<td>https://tieba.baidu.com/p/10386804059
+				<td>作者球二号机
+				<td>2026-01-11 14:49
+			</tr>
+  	</tbody>
+	</table>
+</body>
+</html>
