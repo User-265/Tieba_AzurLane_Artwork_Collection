@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>吧友创作合集2026</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/theme.default.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $("#myTable").tablesorter();
+        });
+    </script>
+
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		// 获取表格中的所有行（排除表头）
+		const rows = document.querySelectorAll('table tr');
+		
+		// 假设链接在第3列（索引从0开始，所以是2）
+		const linkColumnIndex = 1; // 修改为你的列索引
+		
+		rows.forEach(function(row, rowIndex) {
+			// 跳过表头行（如果需要）
+			if (rowIndex === 0 && row.querySelectorAll('th').length > 0) {
+				return;
+			}
+			
+			const cells = row.querySelectorAll('td');
+			if (cells.length > linkColumnIndex) {
+				const linkCell = cells[linkColumnIndex];
+				const urlText = linkCell.textContent.trim();
+				
+				// 确保文本是有效的URL
+				if (urlText && isValidUrl(urlText)) {
+					const link = document.createElement('a');
+					link.href = urlText;
+					link.textContent = urlText;
+					link.target = '_blank'; // 可选：在新标签页打开
+					
+					// 清空单元格并添加链接
+					linkCell.textContent = '';
+					linkCell.appendChild(link);
+				}
+			}
+		});
+		
+		// 简单的URL验证函数
+		function isValidUrl(string) {
+			try {
+				new URL(string);
+				return true;
+			} catch (_) {
+				return false;
+			}
+		}
+	});
+	</script>
+</head>
+<body>
+	<table border="1" style="border-collapse:collapse;" id="myTable" class="tablesorter">
+		<thead>
+			<tr>
+				<td>标题</td>
+				<td>链接</td>
+				<td>作者</td>
+				<td>日期</td>
+			</tr>
+		</thead>
+		<tbody>
+      <tr>
+				<td>【楼之小剧场】我家指挥官不太一样。
+				<td>https://tieba.baidu.com/p/5953321338
+				<td>楼某不咕咕-
+				<td>2018-11-18 06:29
+			</tr>
+		  <tr>
+				<td>甜文应援雪风大人！婚后吸猫是会让指挥官上瘾的♡
+				<td>https://tieba.baidu.com/p/8773341418
+				<td>雪风雪风-雪风
+				<td>2023-12-07 13:21
+			</tr>
+      <tr>
+				<td>因为梗图“李鸿章半夜造船偷偷搞洋务运动”而产生灵感所写的故事
+				<td>https://tieba.baidu.com/p/8843937408
+				<td>细雨牛毛
+				<td>2024-01-04 06:44
+			</tr>
+      <tr>
+				<td>如果安克雷奇长大了，会怎么看待指挥官呢？
+				<td>https://tieba.baidu.com/p/8889539088
+				<td>主人の女僕斯库拉🥰
+				<td>2024-02-06 22:53
+			</tr>
+      <tr>
+				<td>东煌春节就应该买买买然后吃喝玩乐
+				<td>https://tieba.baidu.com/p/8891468397
+				<td>龙之影翼
+				<td>2024-02-08 20:37
+			</tr>
+      <tr>
+				<td>一位指挥官的退休生活
+				<td>https://tieba.baidu.com/p/8903972036
+				<td>向晚的碗香
+				<td>2024-02-21 10:45
+			</tr>
+      <tr>
+				<td>《是，指挥官》堂堂连载
+				<td>https://tieba.baidu.com/p/8925858377
+				<td>雨下一整晚
+				<td>2024-03-08 13:33
+			</tr>
+      
+  	</tbody>
+	</table>
+</body>
+</html>
