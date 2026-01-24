@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>吧友创作合集,2024及更早</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/theme.default.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $("#myTable").tablesorter();
+        });
+    </script>
+
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		// 获取表格中的所有行（排除表头）
+		const rows = document.querySelectorAll('table tr');
+		
+		// 假设链接在第3列（索引从0开始，所以是2）
+		const linkColumnIndex = 1; // 修改为你的列索引
+		
+		rows.forEach(function(row, rowIndex) {
+			// 跳过表头行（如果需要）
+			if (rowIndex === 0 && row.querySelectorAll('th').length > 0) {
+				return;
+			}
+			
+			const cells = row.querySelectorAll('td');
+			if (cells.length > linkColumnIndex) {
+				const linkCell = cells[linkColumnIndex];
+				const urlText = linkCell.textContent.trim();
+				
+				// 确保文本是有效的URL
+				if (urlText && isValidUrl(urlText)) {
+					const link = document.createElement('a');
+					link.href = urlText;
+					link.textContent = urlText;
+					link.target = '_blank'; // 可选：在新标签页打开
+					
+					// 清空单元格并添加链接
+					linkCell.textContent = '';
+					linkCell.appendChild(link);
+				}
+			}
+		});
+		
+		// 简单的URL验证函数
+		function isValidUrl(string) {
+			try {
+				new URL(string);
+				return true;
+			} catch (_) {
+				return false;
+			}
+		}
+	});
+	</script>
+</head>
+<body>
+	<table border="1" style="border-collapse:collapse;" id="myTable" class="tablesorter">
+		<thead>
+			<tr>
+				<td>标题</td>
+				<td>链接</td>
+				<td>作者</td>
+				<td>日期</td>
+			</tr>
+		</thead>
+		<tbody>
+      <tr>
+				<td>【楼之小剧场】我家指挥官不太一样。
+				<td>https://tieba.baidu.com/p/5953321338
+				<td>楼某不咕咕-
+				<td>2018-11-18 06:29
+			</tr>
+		  <tr>
+				<td>甜文应援雪风大人！婚后吸猫是会让指挥官上瘾的♡
+				<td>https://tieba.baidu.com/p/8773341418
+				<td>雪风雪风-雪风
+				<td>2023-12-07 13:21
+			</tr>
+			<tr>
+				<td>假如让弗莱彻在上班的时候……
+				<td>https://tieba.baidu.com/p/8805378551
+				<td>太雕与百灵鸟
+				<td>2023-12-19 22:13
+			</tr>
+			<tr>
+				<td>假如让弗莱彻在上班的时候（24之后）
+				<td>https://tieba.baidu.com/p/8995648196
+				<td>太雕与百灵鸟
+				<td>2024-04-27 10:24
+			</tr>
+			<tr>
+				<td>拉菲的新年祝福
+				<td>https://tieba.baidu.com/p/8835974420
+				<td>复活的265
+				<td>2023-12-31 23:32
+			</tr>
+      <tr>
+				<td>因为梗图“李鸿章半夜造船偷偷搞洋务运动”而产生灵感所写的故事
+				<td>https://tieba.baidu.com/p/8843937408
+				<td>细雨牛毛
+				<td>2024-01-04 06:44
+			</tr>
+      <tr>
+				<td>如果安克雷奇长大了，会怎么看待指挥官呢？
+				<td>https://tieba.baidu.com/p/8889539088
+				<td>主人の女僕斯库拉🥰
+				<td>2024-02-06 22:53
+			</tr>
+      <tr>
+				<td>东煌春节就应该买买买然后吃喝玩乐
+				<td>https://tieba.baidu.com/p/8891468397
+				<td>龙之影翼
+				<td>2024-02-08 20:37
+			</tr>
+      <tr>
+				<td>一位指挥官的退休生活
+				<td>https://tieba.baidu.com/p/8903972036
+				<td>向晚的碗香
+				<td>2024-02-21 10:45
+			</tr>
+      <tr>
+				<td>《是，指挥官》堂堂连载
+				<td>https://tieba.baidu.com/p/8925858377
+				<td>雨下一整晚
+				<td>2024-03-08 13:33
+			</tr>
+      <tr>
+				<td>【同人文】临终的指挥官
+				<td>https://tieba.baidu.com/p/8965467546
+				<td>幽灵猫
+				<td>2024-04-04 09:28
+			</tr>
+			<tr>
+				<td>《港区日常》
+				<td>https://tieba.baidu.com/p/8971769451
+				<td>suheb
+				<td>2024-04-09 00:36
+			</tr>
+			<tr>
+				<td>港区指挥官的日常
+				<td>https://tieba.baidu.com/p/9010453249
+				<td>贴吧用户_a53MPAP
+				<td>2024-05-09 17:54
+			</tr>
+			<tr>
+				<td>个人二创小作文
+				<td>https://tieba.baidu.com/p/9027943910
+				<td>清风吹默水爻
+				<td>2024-05-24 08:44
+			</tr>
+			<tr>
+				<td>个人二创发电小作文
+				<td>https://tieba.baidu.com/p/9028479764
+				<td>清风吹默水爻
+				<td>2024-05-24 16:34
+			</tr>
+			<tr>
+				<td>（二）新来的妹子似乎有些不对劲啊
+				<td>https://tieba.baidu.com/p/9029332999
+				<td>清风吹默水爻
+				<td>2024-05-25 11:54
+			</tr>
+			<tr>
+				<td>（一至四）节奏结束了吧？发一下个人二创
+				<td>https://tieba.baidu.com/p/9029795980
+				<td>清风吹默水爻
+				<td>2024-05-25 19:11
+			</tr>
+			<tr>
+				<td>（五）感情模块高温不下怎么办
+				<td>https://tieba.baidu.com/p/9030789326
+				<td>清风吹默水爻
+				<td>2024-05-26 17:57
+			</tr>
+			<tr>
+				<td>（六）惬意午后却被美梦惊醒？
+				<td>https://tieba.baidu.com/p/9031528796
+				<td>清风吹默水爻
+				<td>2024-05-27 12:05
+			</tr>
+			<tr>
+				<td>（七）被三个老婆一起进攻怎么办
+				<td>https://tieba.baidu.com/p/9033930925
+				<td>清风吹默水爻
+				<td>2024-05-29 12:20
+			</tr>
+			<tr>
+				<td>（八）指挥官醉战三女仆（上）
+				<td>https://tieba.baidu.com/p/9035165492
+				<td>清风吹默水爻
+				<td>2024-05-30 13:21
+			</tr>
+			<tr>
+				<td>（番外）柴郡的特殊魔术
+				<td>https://tieba.baidu.com/p/9037340482
+				<td>清风吹默水爻
+				<td>2024-06-01 10:02
+			</tr>
+			<tr>
+				<td>（八）指挥官醉战三女仆（中下）
+				<td>https://tieba.baidu.com/p/9044111148
+				<td>清风吹默水爻
+				<td>2024-06-07 12:39
+			</tr>
+			<tr>
+				<td>（九）蒸汽姬器人的爱
+				<td>https://tieba.baidu.com/p/9049523461
+				<td>清风吹默水爻
+				<td>2024-06-12 10:15
+			</tr>
+			<tr>
+				<td>（番外）荒海之神的滋味
+				<td>https://tieba.baidu.com/p/9051977291
+				<td>清风吹默水爻
+				<td>2024-06-14 09:41
+			</tr>
+			<tr>
+				<td>（十）与布伦努斯的约会
+				<td>https://tieba.baidu.com/p/9054449731
+				<td>清风吹默水爻
+				<td>2024-06-16 09:07
+			</tr>
+			<tr>
+				<td>（十一）莫加多尔的甜蜜按摩
+				<td>https://tieba.baidu.com/p/9058136301
+				<td>清风吹默水爻
+				<td>2024-06-19 10:12
+			</tr>
+			<tr>
+				<td>（十二）千面女仆的真面目
+				<td>https://tieba.baidu.com/p/9061928507
+				<td>清风吹默水爻
+				<td>2024-06-22 09:31
+			</tr>
+			<tr>
+				<td>（十三）女仆小姐忍不住
+				<td>https://tieba.baidu.com/p/9065444524
+				<td>清风吹默水爻
+				<td>2024-06-25 08:26
+			</tr>
+			<tr>
+				<td>（十四）休息日和铁血酒局邀约
+				<td>https://tieba.baidu.com/p/9075529836
+				<td>清风吹默水爻
+				<td>2024-07-03 12:34
+			</tr>
+			<tr>
+				<td>（十五）铁血酒会
+				<td>https://tieba.baidu.com/p/9076541301
+				<td>清风吹默水爻
+				<td>2024-07-04 08:53
+			</tr>
+  	</tbody>
+	</table>
+</body>
+</html>
