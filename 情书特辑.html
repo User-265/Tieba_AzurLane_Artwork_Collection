@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>吧友创作合集2026</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/theme.default.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $("#myTable").tablesorter();
+        });
+    </script>
+
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		// 获取表格中的所有行（排除表头）
+		const rows = document.querySelectorAll('table tr');
+		
+		// 假设链接在第3列（索引从0开始，所以是2）
+		const linkColumnIndex = 1; // 修改为你的列索引
+		
+		rows.forEach(function(row, rowIndex) {
+			// 跳过表头行（如果需要）
+			if (rowIndex === 0 && row.querySelectorAll('th').length > 0) {
+				return;
+			}
+			
+			const cells = row.querySelectorAll('td');
+			if (cells.length > linkColumnIndex) {
+				const linkCell = cells[linkColumnIndex];
+				const urlText = linkCell.textContent.trim();
+				
+				// 确保文本是有效的URL
+				if (urlText && isValidUrl(urlText)) {
+					const link = document.createElement('a');
+					link.href = urlText;
+					link.textContent = urlText;
+					link.target = '_blank'; // 可选：在新标签页打开
+					
+					// 清空单元格并添加链接
+					linkCell.textContent = '';
+					linkCell.appendChild(link);
+				}
+			}
+		});
+		
+		// 简单的URL验证函数
+		function isValidUrl(string) {
+			try {
+				new URL(string);
+				return true;
+			} catch (_) {
+				return false;
+			}
+		}
+	});
+	</script>
+</head>
+<body>
+	<table border="1" style="border-collapse:collapse;" id="myTable" class="tablesorter">
+		<thead>
+			<tr>
+				<td>标题</td>
+				<td>链接</td>
+				<td>作者</td>
+				<td>日期</td>
+			</tr>
+		</thead>
+		<tbody>
+		  <tr>
+        <td>皇家舰娘的2026情书汇总（二创同人）
+        <td>https://tieba.baidu.com/p/10480638313
+        <td>雪风雪风-雪风
+        <td>2026-02-11 23:08
+      </tr>
+      <tr>
+        <td>海伦娜meta 2026情书（同人）
+        <td>https://tieba.baidu.com/p/10480710430
+        <td>地谈平
+        <td>2026-02-12 00:00
+      </tr>
+      <tr>
+        <td>自己写了俩情书
+        <td>https://tieba.baidu.com/p/10477977506
+        <td>上杉阿贺野
+        <td>2026-02-11 00:35
+      </tr>
+      <tr>
+				<td>给我最喜欢的舰娘们🥰
+				<td>https://tieba.baidu.com/p/10480747814
+				<td>梦之九心
+				<td>2026-02-12 00:17
+			</tr>
+      <tr>
+				<td>大家还在说情书，那我就也写一个
+				<td>https://tieba.baidu.com/p/10480789230
+				<td>箜风雾海
+				<td>2026-02-12 00:34
+			</tr>
+      <tr>
+				<td>尝试一下写十封情书要多久时间
+				<td>https://tieba.baidu.com/p/10477828277
+				<td>贴吧用户_038NbJa
+				<td>2026-02-10 23:06
+			</tr>
+      <tr>
+				<td>罗德尼meta  2026情书（同人）
+				<td>https://tieba.baidu.com/p/10480849923
+				<td>地谈平
+				<td>2026-02-12 01:03
+			</tr>
+      <tr>
+				<td>2026大凤情书二创
+				<td>https://tieba.baidu.com/p/10480785799
+				<td>假面骑士邪特工
+				<td>2026-02-12 00:33
+			</tr>
+      <tr>
+				<td>2026埃吉尔情书二创
+				<td>https://tieba.baidu.com/p/10481566815
+				<td>假面骑士邪特工
+				<td>2026-02-12 09:10
+			</tr>
+      <tr>
+				<td>2026信浓情书二创
+				<td>https://tieba.baidu.com/p/10481586299
+				<td>假面骑士邪特工
+				<td>2026-02-12 09:18
+			</tr>
+      <tr>
+				<td>海伦娜  2026情书（同人）
+				<td>https://tieba.baidu.com/p/10480952364
+				<td>地谈平
+				<td>2026-02-12 02:00
+			</tr>
+      <tr>
+				<td>2026兴登堡情书二创
+				<td>https://tieba.baidu.com/p/10481519377
+				<td>假面骑士邪特工
+				<td>2026-02-12 08:48
+			</tr>
+      <tr>
+				<td>谷风酱2026情书（不喜勿喷）
+				<td>https://tieba.baidu.com/p/10482234208
+				<td>晚上也有的谷风酱
+				<td>2026-02-12 14:00
+			</tr>
+      <tr>
+				<td>自制2026年情人节信件
+				<td>https://tieba.baidu.com/p/10484654583
+				<td>校验客户端
+				<td>2026-02-13 12:26
+			</tr>
+      <tr>
+				<td>企业的情人节礼物
+				<td>https://tieba.baidu.com/p/10486030215
+				<td>Eadial
+				<td>2026-02-14 00:42
+			</tr>
+  		</tbody>
+	</table>
+</body>
+</html>
